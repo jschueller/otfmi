@@ -21,7 +21,7 @@ module relies on PyFMI, a module for manipulating FMUs within Python.
 Installation
 ============
 
-The preferred installation procedure uses Conda. 
+The preferred installation media is Conda. 
 
 First install OpenTURNS in conda, according to the `instructions <http://openturns.github.io/openturns/master/install.html#conda>`_.
 Once OpenTURNS is installed, use the following commands to install OTFMI::
