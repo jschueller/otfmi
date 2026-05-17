@@ -58,7 +58,7 @@ jobs:
           mkdir -p ./otfmi/example/file/fmu/macosx-11.0-arm64
           mo2fmu ./otfmi/example/file/deviation.mo ./otfmi/example/file/fmu/macosx-11.0-arm64/deviation.fmu
           mo2fmu ./otfmi/example/file/epid.mo ./otfmi/example/file/fmu/macosx-11.0-arm64/epid.fmu
-          mo2fmu ./otfmi/example/file/HeatExchanger.mo ./otfmi/example/file/fmu/macosx-11.0-arm64/HeatExchanger.fmu
+          #mo2fmu ./otfmi/example/file/HeatExchanger.mo ./otfmi/example/file/fmu/macosx-11.0-arm64/HeatExchanger.fmu
           pythonfmu build --file ./otfmi/example/file/DeviationSlave.py --dest ./otfmi/example/file/fmu/macosx-11.0-arm64
           pytest test -s
 
