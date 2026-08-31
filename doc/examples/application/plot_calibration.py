@@ -172,7 +172,7 @@ graph = ot.Graph(
 cloud = ot.Cloud(timeObservations, populationObservations)
 cloud.setPointStyle("circle")
 graph.add(cloud)
-_ = otv.View(graph, figure_kw={"figsize": (4.0, 4.0)})
+_ = otv.View(graph, figure_kw={"figsize": (5.0, 4.0)})
 
 
 # %%
