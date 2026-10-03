@@ -3,9 +3,9 @@
 """Middle and high level classes to simulate FMU files through OpenTURNS objects."""
 
 import openturns as ot
-import pyfmi
 import numpy as np
 from . import fmi
+from . import backend
 from pathlib import Path
 
 
@@ -64,7 +64,7 @@ class _FMUBaseFunction:
         else:
             difference = set(inputs_fmu).difference(all_vars)
             if difference:
-                raise pyfmi.common.io.VariableNotFoundError(", ".join(difference))
+                raise backend.VariableNotFoundError(", ".join(difference))
 
             accepted_causality = [fmi.get_causality_input(self._model)]
             fmix_parameter = fmi.get_causality_parameter(self._model)
@@ -93,13 +93,13 @@ class _FMUBaseFunction:
             fmix_output = fmi.get_causality_output(self._model)
             outputs_fmu = [name for name in all_vars if causality[name] == fmix_output]
             if len(outputs_fmu) == 0:
-                raise pyfmi.common.io.VariableNotFoundError(
+                raise backend.VariableNotFoundError(
                     "No variables marked as OUTPUT please specify outputs_fmu"
                 )
         else:
             difference = set(outputs_fmu).difference(fmi.get_name_variable(self._model))
             if difference:
-                raise pyfmi.common.io.VariableNotFoundError(", ".join(difference))
+                raise backend.VariableNotFoundError(", ".join(difference))
 
             accepted_causality = [fmi.get_causality_output(self._model)]
             fmix_local = fmi.get_causality_local(self._model)
@@ -225,8 +225,8 @@ class _FMUBaseFunction:
             pass  # No initialization script.
         try:
             self._model.initialize()
-        except pyfmi.fmi.FMUException as ex:
-            raise pyfmi.fmi.FMUException(
+        except backend.FMUException as ex:
+            raise backend.FMUException(
                 str(ex) + "\n" + "\n".join([str(line) for line in self._model.get_log()])
             )
 
